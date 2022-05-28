@@ -1,5 +1,5 @@
-import request from '../utils/request';
+import request from '@/utils/request';
 
-export function getBanner(params) {
-  return request.get('/banner', { params });
-}
+export const getBanneList = (params) => request.get('/banner', { params });
+
+export const getRecommendList = () => request.get('/personalized');

@@ -1,18 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import Slider from '../../components/Slider';
-import { getBanner } from '../../api';
+import React, { useEffect } from 'react';
+import Slider from '@/components/Slider';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBnanerList, setRecommendList } from '@/store/slice/recommend';
+import { RecommendListWrap } from '@/views/Recommend/style';
+// import { IconStyle } from '@/assets/iconfont/iconfont';
 
 function Recommend(props) {
-  const [bannerList, setBannerList] = useState([]);
+  const { bannerList,recommendList } = useSelector(state => state.recommend);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getBanner({ type: 2 }).then(res => {
-      setBannerList(res.banners);
-    });
-  }, []);
+    dispatch(setBnanerList({ type: 2 }));
+    dispatch(setRecommendList())
+  }, [dispatch]);
 
   return (
-    <Slider bannerList={ bannerList }></Slider>
+    <div>
+      <Slider bannerList={ bannerList }></Slider>
+      <div>
+        <h4>推荐歌单</h4>
+        <RecommendListWrap>
+          <div className="recommend-list-wrap">
+            <div className="list-item"></div>
+          </div>
+        </RecommendListWrap>
+      </div>
+    </div>
   );
 }
 

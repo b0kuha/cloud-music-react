@@ -1,40 +1,24 @@
 import styled from 'styled-components';
-import style from '../../assets/global-style';
+import style from '@/assets/global-style';
 
 export const SliderContainer = styled.div`
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  background: white;
+  background: ${ style['theme-color'] } !important;
+  .swiper-wrapper {
+    .swiper-slide {
+      border-radius: 6px !important;
 
-  .before {
-    position: absolute;
-    top: 0;
-    height: 60%;
-    width: 100%;
-    background: ${ style['theme-color'] };
-  }
-
-  .slider-container {
-    position: relative;
-    width: 98%;
-    height: 160px;
-    overflow: hidden;
-    margin: auto;
-    border-radius: 6px;
-
-    .slider-nav {
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .swiper-pagination-bullet-active {
-      background: ${ style['theme-color'] };
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 6px !important;
+      }
     }
   }
 
+  .swiper-pagination-bullet-active {
+    background: ${ style['theme-color'] } !important;
+  }
+  .swiper-pagination-bullet{
+    background: white !important;
+}
 `;
