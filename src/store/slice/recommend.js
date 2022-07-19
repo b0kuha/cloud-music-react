@@ -1,16 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getBanneList, getRecommendList } from '@/api';
+import { getBannerList, getRecommendList } from '@/api';
 
-export const setBnanerList = createAsyncThunk('recomend/bannerList', async (params) => {
-  const res = await getBanneList(params);
-  return res;
-});
+export const setBannerList = createAsyncThunk(
+  'recommend/bannerList',
+  async (params) => {
+    const res = await getBannerList(params);
+    return res;
+  },
+);
 
-// export const setRecommendList =createAsyncThunk('recommend/recommendList',async (params)=>{
-//   const res = await getRecommendList()
-//   return res
-// })
-
+export const setRecommendList = createAsyncThunk(
+  'recommend/recommendList',
+  async (params) => {
+    const res = await getRecommendList();
+    return res;
+  },
+);
 
 export const recommendSlice = createSlice({
   name: 'recommend',
@@ -22,21 +27,27 @@ export const recommendSlice = createSlice({
     // setBannerList: (state, action) => {
     //   state.bannerList = action.payload.banners;
     // },
-    setRecommendList: async (state, { payload }) => {
-      const res = await getRecommendList()
-      state.recommendList = res.result
-    },
+    // setRecommendList: async (state, { payload }) => {
+    //   const res = await getRecommendList()
+    //   state.recommendList = res.result
+    // },
   },
   extraReducers: {
-    [setBnanerList.fulfilled]: (state, { payload }) => {
+    [setBannerList.fulfilled]: (state, { payload }) => {
       state.bannerList = payload.banners;
     },
-    [setBnanerList.rejected]: (state, err) => {
-      console.log(state,err);
+    [setBannerList.rejected]: (state, err) => {
+      console.log(state, err);
+    },
+    [setRecommendList.fulfilled]: (state, { payload }) => {
+      state.recommendList = payload.result;
+    },
+    [setRecommendList.rejected]: (state, err) => {
+      console.log(state, err);
     },
   },
 });
 
-export const {  setRecommendList } = recommendSlice.actions;
+// export const {   } = recommendSlice.actions;
 
 export default recommendSlice.reducer;

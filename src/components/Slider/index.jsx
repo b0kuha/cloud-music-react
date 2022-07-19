@@ -11,6 +11,7 @@ function Slider(props) {
 
   return (
     <SliderContainer>
+      <div className="before"></div>
       <Swiper modules={ [Pagination, Autoplay] }
               pagination={ { clickable: true } }
               autoplay
